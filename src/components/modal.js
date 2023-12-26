@@ -2,17 +2,15 @@ export { openPopup, closePopup };
 
 function openPopup(popup) {
     popup.classList.add("popup_is-opened");
-
     document.addEventListener("keydown", closeEscPopup);
     document.addEventListener("click", closeOnLayout);
-    popup.addEventListener("submit", () => {
-        closePopup;
-    });
+
 } // функция открытия попапа
 
-function closePopup() {
-    const popup = document.querySelector(".popup_is-opened");
+function closePopup(popup) {
     popup.classList.remove("popup_is-opened");
+    document.removeEventListener("keydown", closeEscPopup);
+    document.removeEventListener("click", closeOnLayout);
 } // функция закрытия попапа
 
 function closeOnLayout(event) {
