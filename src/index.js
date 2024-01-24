@@ -15,7 +15,6 @@ import {
 
 const cardsContainer = document.querySelector(".places__list");
 
-const profileAddButton = document.querySelector(".profile__add-button");
 const profileEditButton = document.querySelector(".profile__edit-button");
 const popupTypeEdit = document.querySelector(".popup_type_edit");
 const imagePopupText = document.querySelector(".popup__caption");
@@ -26,6 +25,7 @@ const jobInput = formElementProfile.querySelector('input[name="description"]');
 const jobProfile = document.querySelector(".profile__description");
 const nameProfile = document.querySelector(".profile__title");
 // профиль
+const cardAddButton = document.querySelector(".profile__add-button");
 const popupTypeNewCard = document.querySelector(".popup_type_new-card");
 const formElementCard = document.querySelector('form[name="new-place"]');
 const popupButtonCard = formElementCard.querySelector(".popup__button");
@@ -101,7 +101,6 @@ function openProfilePopup() {
 // открываем попап новой карточки
 function openCardPopup() {
   openPopup(popupTypeNewCard);
-  clearValidation(formElementCard, validationConfig);
 }
 
 // открываем попап аватара
@@ -181,8 +180,9 @@ function handleFormCardSubmit(event) {
         openImagePopup
       );
       cardsContainer.prepend(newCard);
-      nameCard.reset;
-      linkCard.reset;
+      nameCard.value = "";
+      linkCard.value = "";
+      clearValidation(formElementCard, validationConfig);
       closePopup(popupTypeNewCard);
     })
     .catch((err) => {
@@ -195,7 +195,7 @@ function handleFormCardSubmit(event) {
 
 profileEditButton.addEventListener("click", openProfilePopup);
 
-profileAddButton.addEventListener("click", openCardPopup);
+cardAddButton.addEventListener("click", openCardPopup);
 
 profileAvatar.addEventListener("click", openAvatarPopup);
 
